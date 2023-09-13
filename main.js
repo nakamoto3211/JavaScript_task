@@ -3,8 +3,8 @@ $(document).ready(function(){
   
   var sec_OneTenth = 0;
   var sec = 0;
-  var sec_TensPlace = 0;
   var min = 0;
+  var hour = 0;
   
   var time_count;
   
@@ -16,17 +16,17 @@ $(document).ready(function(){
       sec += 1;
     }
     
-    if (sec > 9) {
+    if (sec > 59) {
       sec = 0;
-      sec_TensPlace += 1;
-    }
-    
-    if (sec_TensPlace > 5) {
-      sec_TensPlace = 0;
       min += 1;
     }
     
-    $('#timer').html(min + ':' +  sec_TensPlace + ':' + sec + ':' + sec_OneTenth);
+    if (min > 59) {
+      min = 0;
+      hour += 1;
+    }
+    
+    $('#timer').html(hour + ':' +  min + ':' + sec + ':' + sec_OneTenth);
   }
   
   $("#start").click(function() {
@@ -53,8 +53,8 @@ $(document).ready(function(){
     clearInterval(time_count);
     sec_OneTenth = 0;
     sec = 0;
-    sec_TensPlace = 0;
     min = 0;
+    hour = 0;
     $("#timer").html("0:0:0:0");
     
     $("#reset,#stop").attr("disabled", true);
